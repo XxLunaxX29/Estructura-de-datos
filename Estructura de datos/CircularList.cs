@@ -176,23 +176,21 @@ namespace Estructura_de_datos
             return false; // El dato no se encontró
         }
 
-        public void ShowList()
+        public string ShowList()
         {
             if (head == null)
-            {
-                Console.WriteLine("La lista está vacía.");
-                return;
-            }
+                return "Lista circular vacía";
 
             NodeCirculares h = head;
+            string resultado = "";
+
             do
             {
-                // Llama al método ToString() del nodo, que retorna "Dato:X"
-                Console.Write(h.ToString() + " -> ");
+                resultado += h.Data + " → ";
                 h = h.Next;
             } while (h != head);
 
-            Console.WriteLine("...");
+            return resultado + "(vuelve al inicio)";
         }
 
         public int Count()

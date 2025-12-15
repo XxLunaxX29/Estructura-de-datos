@@ -12,6 +12,7 @@ namespace Estructura_de_datos
         private int[,] matriz;
         private bool dirigido;
         private bool ponderado;
+        public Action<string> Output { get; set; }
         public Graph(bool dirigido, bool ponderado)
         {
             nodos = new List<GraphNode>();
@@ -19,31 +20,33 @@ namespace Estructura_de_datos
             this.dirigido = dirigido;
             this.ponderado = ponderado;
         }
-
+        private void Write(string message)
+        {
+            Output?.Invoke(message);
+        }
         public void AddNodo(GraphNode nodo)
         {
             bool existe = nodos.Any(n => n.Data == nodo.Data);
-
             if (existe)
             {
-                Console.WriteLine($"Error: ya existe un vértice con el identificador '{nodo.Data}'.");
+                Write($"Error: ya existe el vértice '{nodo.Data}'");
                 return;
             }
+
             nodos.Add(nodo);
+
             int nuevoTam = nodos.Count;
             int[,] nuevaMatriz = new int[nuevoTam, nuevoTam];
 
-            // Copiar los valores anteriores
             for (int i = 0; i < nuevoTam - 1; i++)
-            {
                 for (int j = 0; j < nuevoTam - 1; j++)
-                {
                     nuevaMatriz[i, j] = matriz[i, j];
-                }
-            }
 
-            matriz = nuevaMatriz; // Reemplaza la matriz anterior
+            matriz = nuevaMatriz;
+
+            Write($"Nodo '{nodo.Data}' agregado");
         }
+
 
         public void AddArista(int src, int dst, int w = 1)
         {
@@ -54,26 +57,20 @@ namespace Estructura_de_datos
                 matriz[dst, src] = w;
             }
         }
-        public void AddArista(char src, char dst, int w = 1)
+        public void AddArista(char origen, char destino)
         {
-            int i = ObtenerIndice(src);
-            int j = ObtenerIndice(dst);
+            int i = nodos.FindIndex(n => n.Data == origen);
+            int j = nodos.FindIndex(n => n.Data == destino);
+
             if (i == -1 || j == -1)
-            {
-                Console.WriteLine($"Error: alguno de los vértices '{src}' o '{dst}' no existe.");
                 return;
-            }
-            if (matriz[i, j] != 0)
-            {
-                Console.WriteLine("Error: Ya hay un arista asignada");
-                return;
-            }
-            if (!ponderado) w = 1;
-            matriz[i, j] = w;
+
+            matriz[i, j] = 1;
+
             if (!dirigido)
-                matriz[j, i] = w;
-            Console.WriteLine("Arista añadida");
+                matriz[j, i] = 1;
         }
+
 
         public bool CheckArista(int src, int dst)
         {
@@ -82,37 +79,37 @@ namespace Estructura_de_datos
 
         public string Print()
         {
-            //Console.Write("  ");
-            string matrizString;
-            matrizString = "  ";
-            foreach (var node in nodos)
-            {
-                //  Console.Write(node.Data + " ");
-                matrizString += node.Data + " ";
-            }
-            //Console.WriteLine();
-            matrizString += "\n";
+            if (nodos.Count == 0)
+                return "Grafo vacío";
 
-            for (int i = 0; i < matriz.GetLength(0); i++)
+            string resultado = "  ";
+
+            // Encabezado
+            foreach (var n in nodos)
+                resultado += n.Data + " ";
+
+            resultado += Environment.NewLine;
+
+            // Filas
+            for (int i = 0; i < nodos.Count; i++)
             {
-                //Console.Write(nodos[i].Data + " ");
-                matrizString += nodos[i].Data + " ";
-                for (int j = 0; j < matriz.GetLength(1); j++)
-                {
-                    //    Console.Write(matriz[i, j] + " ");
-                    matrizString += matriz[i, j] + " ";
-                }
-                //Console.WriteLine();
-                matrizString += "\n";
+                resultado += nodos[i].Data + " ";
+
+                for (int j = 0; j < nodos.Count; j++)
+                    resultado += matriz[i, j] + " ";
+
+                resultado += Environment.NewLine;
             }
-            return matrizString;
+
+            return resultado;
         }
+
         public void BFS(char start)
         {
             int s = ObtenerIndice(start);
             if (s == -1)
             {
-                Console.WriteLine($"Error: el vértice '{s}' no existe.");
+                Write($"Error: el vértice '{s}' no existe.");
                 return;
             }
             bool[] visitado = new bool[nodos.Count];
@@ -124,7 +121,7 @@ namespace Estructura_de_datos
             while (cola.Count > 0)
             {
                 int actual = cola.Dequeue();
-                Console.Write(nodos[actual].Data + " ");
+                Write(nodos[actual].Data + " ");
 
                 for (int i = 0; i < nodos.Count; i++)
                 {
@@ -142,7 +139,7 @@ namespace Estructura_de_datos
             int s = ObtenerIndice(start);
             if (s == -1)
             {
-                Console.WriteLine($"Error: el vértice '{s}' no existe.");
+                Write($"Error: el vértice '{s}' no existe.");
                 return;
             }
             bool[] visitado = new bool[nodos.Count];
@@ -152,7 +149,7 @@ namespace Estructura_de_datos
         private void DFSRecursivo(int v, bool[] visitado)
         {
             visitado[v] = true;
-            Console.Write(nodos[v].Data + " ");
+            Write(nodos[v].Data + " ");
 
             for (int i = 0; i < nodos.Count; i++)
             {
@@ -173,19 +170,19 @@ namespace Estructura_de_datos
             int j = ObtenerIndice(dst);
             if (i == -1 || j == -1)
             {
-                Console.WriteLine($"Error: alguno de los vértices '{src}' o '{dst}' no existe.");
+                Write($"Error: alguno de los vértices '{src}' o '{dst}' no existe.");
                 return;
             }
             matriz[i, j] = 0;
             if (!dirigido) matriz[j, i] = 0;
-            Console.WriteLine("Arista eliminada");
+            Write("Arista eliminada");
         }
         public void RemoveNodo(char src)
         {
             int s = ObtenerIndice(src);
             if (s == -1)
             {
-                Console.WriteLine("Índice inválido");
+                Write("Índice inválido");
                 return;
             }
 
