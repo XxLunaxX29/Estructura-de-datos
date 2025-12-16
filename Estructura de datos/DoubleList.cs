@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,9 +68,16 @@ namespace Estructura_de_datos
             }
             if (head.Data == data)
             {
-                head.Next.Back = null;
-                head = head.Next;
-                return;
+                if (head.Next != null)
+                {
+                    head.Next.Back = null;
+                    head = head.Next;
+                }
+                else
+                {
+                    head = null;
+                }
+                    return;
             }
 
 
@@ -83,9 +91,12 @@ namespace Estructura_de_datos
                 if (h.Next.Data == data)
                 {
                     h.Next = h.Next.Next;
-                    h.Next.Back = h;
+                    if (h.Next != null)
+                        h.Next.Back = h;
                     return;
                 }
+
+
                 h = h.Next;
             }
             return;

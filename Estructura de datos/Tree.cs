@@ -28,17 +28,19 @@ namespace Estructura_de_datos
             raiz = AgregarRecursivo(raiz, valor);
         }
 
-        private TreeNode AgregarRecursivo(TreeNode? actual, int numero)
+        public TreeNode AgregarRecursivo(TreeNode? actual, int numero)
         {
             if (actual == null)
             {
                 return new TreeNode(numero);
             }
+
             if (numero == actual.Valor)
             {
-                Console.WriteLine("El número ya existe en el árbol");
+                Console.WriteLine("El valor ya existe en el árbol.");
                 return actual;
             }
+
             if (numero < actual.Valor)
             {
                 actual.Izquierda = AgregarRecursivo(actual.Izquierda, numero);
@@ -59,9 +61,10 @@ namespace Estructura_de_datos
         {
             if (actual == null)
             {
-                Console.WriteLine("El número no se encuentra en el árbol.");
+                Console.WriteLine("El valor no existe en el árbol.");
                 return null;
             }
+
             // Buscar el nodo
             if (numero < actual.Valor)
             {
@@ -97,7 +100,6 @@ namespace Estructura_de_datos
             return actual;
         }
 
-        // Método auxiliar para encontrar el nodo con el valor mínimo
         private TreeNode EncontrarMinimo(TreeNode nodo)
         {
             while (nodo.Izquierda != null)
@@ -107,6 +109,9 @@ namespace Estructura_de_datos
             return nodo;
         }
 
+        // --- MÉTODOS DE RECORRIDO ---
+
+        // 1. PreOrden (Público + Privado)
         public void MostrarPreOrden()
         {
             MostrarPreOrdenRecursivo(raiz);
@@ -115,40 +120,32 @@ namespace Estructura_de_datos
 
         private void MostrarPreOrdenRecursivo(TreeNode? nodo)
         {
-            if (nodo == null)
-                return;
-
-            // Paso 1: mostrar nodo
-            Console.Write(nodo.Valor + " ");
-
-            // Paso 2: recorrer izquierda
-            MostrarPreOrdenRecursivo(nodo.Izquierda);
-
-            // Paso 3: recorrer derecha
-            MostrarPreOrdenRecursivo(nodo.Derecha);
+            if (nodo != null)
+            {
+                Console.Write(nodo.Valor + " "); // Raíz
+                MostrarPreOrdenRecursivo(nodo.Izquierda); // Izquierda
+                MostrarPreOrdenRecursivo(nodo.Derecha); // Derecha
+            }
         }
 
+        // 2. InOrden (Público + Privado)
         public void MostrarInOrden()
         {
             MostrarInOrdenRecursivo(raiz);
-            Console.WriteLine(); // Salto de línea al final
+            Console.WriteLine();
         }
 
         private void MostrarInOrdenRecursivo(TreeNode? nodo)
         {
-            if (nodo == null)
-                return;
-
-            // Paso 1: recorrer izquierda
-            MostrarInOrdenRecursivo(nodo.Izquierda);
-
-            // Paso 2: mostrar el valor
-            Console.Write(nodo.Valor + " ");
-
-            // Paso 3: recorrer derecha
-            MostrarInOrdenRecursivo(nodo.Derecha);
+            if (nodo != null)
+            {
+                MostrarInOrdenRecursivo(nodo.Izquierda); // Izquierda
+                Console.Write(nodo.Valor + " "); // Raíz
+                MostrarInOrdenRecursivo(nodo.Derecha); // Derecha
+            }
         }
 
+        // 3. PostOrden (Público + Privado)
         public void MostrarPostOrden()
         {
             MostrarPostOrdenRecursivo(raiz);
@@ -157,18 +154,12 @@ namespace Estructura_de_datos
 
         private void MostrarPostOrdenRecursivo(TreeNode? nodo)
         {
-            if (nodo == null)
-                return;
-
-            // Paso 1: recorrer izquierda
-            MostrarPostOrdenRecursivo(nodo.Izquierda);
-
-            // Paso 2: recorrer derecha
-            MostrarPostOrdenRecursivo(nodo.Derecha);
-
-            // Paso 3: mostrar nodo
-            Console.Write(nodo.Valor + " ");
+            if (nodo != null)
+            {
+                MostrarPostOrdenRecursivo(nodo.Izquierda); // Izquierda
+                MostrarPostOrdenRecursivo(nodo.Derecha); // Derecha
+                Console.Write(nodo.Valor + " "); // Raíz
+            }
         }
-
     }
 }

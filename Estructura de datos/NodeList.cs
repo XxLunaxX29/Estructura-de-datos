@@ -32,7 +32,7 @@ namespace Estructura_de_datos
 
         public override string ToString()
         {
-            return "Contact:" + data.ToString();
+            return "Nodo: " + data.ToString();
         }
     }
 }

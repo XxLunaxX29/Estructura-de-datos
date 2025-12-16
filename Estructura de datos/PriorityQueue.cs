@@ -45,7 +45,7 @@ namespace Estructura_de_datos
 
         public override string ToString()
         {
-            return $"P1: {cola1}\n P2: {cola2}\n P3: {cola3}";
+            return $"P 1: {cola1}\n P 2: {cola2}\n P 3: {cola3}";
         }
     }
 }

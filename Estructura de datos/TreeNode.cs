@@ -26,7 +26,7 @@ namespace Estructura_de_datos
 
         public TreeNode(int valor)
         {
-            Valor = valor;
+            this.Valor = valor;
         }
     }
 }

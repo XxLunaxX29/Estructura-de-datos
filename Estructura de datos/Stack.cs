@@ -42,22 +42,25 @@ namespace Estructura_de_datos
         {
             if (esEstatica)
             {
-                // verificar que no esté llena
                 if (topIndex == tamañoMax - 1)
                     throw new InvalidOperationException("La pila estática está llena (Overflow).");
 
-                topIndex++; // Incrementamos el índice del tope
-                array![topIndex] = nodo; // Guardamos el nodo en el arreglo
+                topIndex++;
+                array![topIndex] = nodo;
             }
             else
             {
-                // para algoritmo dinámico  
-                // "Prev" apunta al nodo que antes era el top (hacia abajo)
                 nodo.Prev = topNode;
-                topNode = nodo; // El nuevo nodo ahora es el top
+                topNode = nodo;
             }
         }
 
+        // 🔥 MÉTODO ADAPTADO
+        public void Push(int dato)
+        {
+            NodeStack nodo = new NodeStack(dato);
+            Push(nodo);
+        }
         public NodeStack Pop()
         {
             if (IsEmpty())

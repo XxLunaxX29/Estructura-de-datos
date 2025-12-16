@@ -30,6 +30,11 @@
             btnConectarGrafos = new Button();
             txtDestino = new TextBox();
             txtOrigen = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
+            btnPreOrden = new Button();
+            btnInOrden = new Button();
+            btnPostOrden = new Button();
             SuspendLayout();
             // 
             // cmbEstructura
@@ -39,6 +44,7 @@
             cmbEstructura.Name = "cmbEstructura";
             cmbEstructura.Size = new Size(200, 28);
             cmbEstructura.TabIndex = 0;
+            cmbEstructura.SelectedIndexChanged += cmbEstructura_SelectedIndexChanged;
             // 
             // txtDato
             // 
@@ -95,30 +101,78 @@
             // 
             // btnConectarGrafos
             // 
-            btnConectarGrafos.Location = new Point(535, 130);
+            btnConectarGrafos.Location = new Point(604, 153);
             btnConectarGrafos.Name = "btnConectarGrafos";
             btnConectarGrafos.Size = new Size(100, 50);
             btnConectarGrafos.TabIndex = 7;
-            btnConectarGrafos.Text = "Conexion Grafos";
             btnConectarGrafos.Click += btnConectarGrafos_Click;
             // 
             // txtDestino
             // 
-            txtDestino.Location = new Point(596, 97);
+            txtDestino.Location = new Point(665, 120);
             txtDestino.Name = "txtDestino";
             txtDestino.Size = new Size(60, 27);
             txtDestino.TabIndex = 8;
             // 
             // txtOrigen
             // 
-            txtOrigen.Location = new Point(518, 97);
+            txtOrigen.Location = new Point(587, 120);
             txtOrigen.Name = "txtOrigen";
             txtOrigen.Size = new Size(60, 27);
             txtOrigen.TabIndex = 9;
+            txtOrigen.TextChanged += txtOrigen_TextChanged;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(587, 93);
+            label1.Name = "label1";
+            label1.Size = new Size(0, 20);
+            label1.TabIndex = 10;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(665, 93);
+            label2.Name = "label2";
+            label2.Size = new Size(0, 20);
+            label2.TabIndex = 11;
+            // 
+            // btnPreOrden
+            // 
+            btnPreOrden.Location = new Point(714, 209);
+            btnPreOrden.Name = "btnPreOrden";
+            btnPreOrden.Size = new Size(75, 49);
+            btnPreOrden.TabIndex = 12;
+            btnPreOrden.Text = "Pre Orden";
+            btnPreOrden.Click += btnPreOrden_Click;
+            // 
+            // btnInOrden
+            // 
+            btnInOrden.Location = new Point(517, 209);
+            btnInOrden.Name = "btnInOrden";
+            btnInOrden.Size = new Size(75, 28);
+            btnInOrden.TabIndex = 13;
+            btnInOrden.Text = "In Orden";
+            btnInOrden.Click += btnInOrden_Click;
+            // 
+            // btnPostOrden
+            // 
+            btnPostOrden.Location = new Point(616, 209);
+            btnPostOrden.Name = "btnPostOrden";
+            btnPostOrden.Size = new Size(75, 49);
+            btnPostOrden.TabIndex = 14;
+            btnPostOrden.Text = "Post Orden";
+            btnPostOrden.Click += btnPostOrden_Click;
             // 
             // Form1
             // 
             ClientSize = new Size(860, 400);
+            Controls.Add(btnPostOrden);
+            Controls.Add(btnInOrden);
+            Controls.Add(btnPreOrden);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(txtOrigen);
             Controls.Add(txtDestino);
             Controls.Add(btnConectarGrafos);
@@ -131,11 +185,17 @@
             Controls.Add(txtSalida);
             Name = "Form1";
             Text = "Estructuras de Datos";
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
         private Button btnConectarGrafos;
         private TextBox txtDestino;
         private TextBox txtOrigen;
+        private Label label1;
+        private Label label2;
+        private Button btnPreOrden;
+        private Button btnInOrden;
+        private Button btnPostOrden;
     }
 }
