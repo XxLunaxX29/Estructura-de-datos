@@ -100,7 +100,7 @@ namespace Estructura_de_datos
             return actual;
         }
 
-        private TreeNode EncontrarMinimo(TreeNode nodo)
+        public TreeNode EncontrarMinimo(TreeNode nodo)
         {
             while (nodo.Izquierda != null)
             {

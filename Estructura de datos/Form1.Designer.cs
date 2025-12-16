@@ -110,14 +110,14 @@
             // 
             // txtDestino
             // 
-            txtDestino.Location = new Point(665, 120);
+            txtDestino.Location = new Point(690, 120);
             txtDestino.Name = "txtDestino";
             txtDestino.Size = new Size(60, 27);
             txtDestino.TabIndex = 8;
             // 
             // txtOrigen
             // 
-            txtOrigen.Location = new Point(587, 120);
+            txtOrigen.Location = new Point(560, 120);
             txtOrigen.Name = "txtOrigen";
             txtOrigen.Size = new Size(60, 27);
             txtOrigen.TabIndex = 9;
@@ -126,7 +126,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(587, 93);
+            label1.Location = new Point(560, 93);
             label1.Name = "label1";
             label1.Size = new Size(0, 20);
             label1.TabIndex = 10;
@@ -134,7 +134,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(665, 93);
+            label2.Location = new Point(690, 93);
             label2.Name = "label2";
             label2.Size = new Size(0, 20);
             label2.TabIndex = 11;
