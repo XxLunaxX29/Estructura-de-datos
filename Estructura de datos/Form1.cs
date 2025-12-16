@@ -143,9 +143,8 @@ namespace Estructura_de_datos
             }
 
             bool eliminado = false;
-            string Valor = txtDestino.Text;
             string Clave = txtOrigen.Text;
-            string Data = txtDato.Text;
+    
 
             switch (cmbEstructura.Text)
             {
@@ -255,7 +254,7 @@ namespace Estructura_de_datos
         // ================= BUSCAR =================
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (!int.TryParse(txtDato.Text, out int dato) && cmbEstructura.Text == "Diccionario")
+            if (!int.TryParse(txtDato.Text, out int dato) && cmbEstructura.Text != "Diccionario" && cmbEstructura.Text != "Tabla Hash" && cmbEstructura.Text != "Grafo")
             {
                 MessageBox.Show("Ingresa un número válido");
                 return;
@@ -280,6 +279,12 @@ namespace Estructura_de_datos
 
                 case "Lista Doble Circular":
                     encontrado = listaDobleCircular.Buscar(dato) != null;
+                    break;
+                case "Diccionario":
+                    encontrado = diccionario.ContainsKey(Clave);
+                    break;
+                case "Tabla Hash":
+                    encontrado = tablahash.ContainsKey(Clave);
                     break;
             }
 
@@ -438,6 +443,8 @@ namespace Estructura_de_datos
                     txtOrigen.Enabled = false;
                     txtDestino.Enabled = false;
                     btnConectarGrafos.Enabled = false;
+                    btnAgregar.Enabled = true;
+                    label3.Text = null;
                     break;
                 case "Lista Doble":
                     btnInOrden.Enabled = false;
@@ -449,6 +456,8 @@ namespace Estructura_de_datos
                     txtOrigen.Enabled = false;
                     txtDestino.Enabled = false;
                     btnConectarGrafos.Enabled = false;
+                    btnAgregar.Enabled = true;
+                    label3.Text = null;
                     break;
                 case "Lista Circular":
                     btnInOrden.Enabled = false;
@@ -460,6 +469,8 @@ namespace Estructura_de_datos
                     txtOrigen.Enabled = false;
                     txtDestino.Enabled = false;
                     btnConectarGrafos.Enabled = false;
+                    btnAgregar.Enabled = true;
+                    label3.Text = null;
                     break;
                 case "Lista Doble Circular":
                     txtDato.Enabled = true;
@@ -468,6 +479,8 @@ namespace Estructura_de_datos
                     txtOrigen.Enabled = false;
                     txtDestino.Enabled = false;
                     btnConectarGrafos.Enabled = false;
+                    btnAgregar.Enabled = true;
+                    label3.Text = null;
                     break;
                 case "Pila":
                     btnInOrden.Enabled = false;
@@ -479,6 +492,8 @@ namespace Estructura_de_datos
                     txtOrigen.Enabled = false;
                     txtDestino.Enabled = false;
                     btnConectarGrafos.Enabled = false;
+                    btnAgregar.Enabled = true;
+                    label3.Text = null;
                     break;
                 case "Cola Simple":
                     btnInOrden.Enabled = false;
@@ -490,6 +505,8 @@ namespace Estructura_de_datos
                     txtOrigen.Enabled = false;
                     txtDestino.Enabled = false;
                     btnConectarGrafos.Enabled = false;
+                    btnAgregar.Enabled = true;
+                    label3.Text = null;
                     break;
                 case "Cola Circular":
                     btnInOrden.Enabled = false;
@@ -501,6 +518,8 @@ namespace Estructura_de_datos
                     txtOrigen.Enabled = false;
                     txtDestino.Enabled = false;
                     btnConectarGrafos.Enabled = false;
+                    btnAgregar.Enabled = true;
+                    label3.Text = null;
                     break;
                 case "Cola Doble":
                     btnInOrden.Enabled = false;
@@ -512,6 +531,8 @@ namespace Estructura_de_datos
                     txtOrigen.Enabled = false;
                     txtDestino.Enabled = false;
                     btnConectarGrafos.Enabled = false;
+                    btnAgregar.Enabled = true;
+                    label3.Text = null;
                     break;
                 case "Cola Prioridad":
                     btnInOrden.Enabled = false;
@@ -524,6 +545,8 @@ namespace Estructura_de_datos
                     txtDestino.Enabled = true;
                     btnConectarGrafos.Enabled = true;
                     btnConectarGrafos.Text = "Agregar prioridad";
+                    btnAgregar.Enabled = false;
+                    label3.Text = null;
                     break;
                 case "Árbol Binario":
                     txtDato.Enabled = true;
@@ -535,6 +558,8 @@ namespace Estructura_de_datos
                     btnInOrden.Enabled = true;
                     btnPostOrden.Enabled = true;
                     btnPreOrden.Enabled = true;
+                    btnAgregar.Enabled = true;
+                    label3.Text = null;
                     break;
                 case "Grafo":
                     txtDato.Enabled = true;
@@ -546,10 +571,12 @@ namespace Estructura_de_datos
                     btnInOrden.Enabled = false;
                     btnPostOrden.Enabled = false;
                     btnPreOrden.Enabled = false;
+                    btnAgregar.Enabled = true;
                     btnConectarGrafos.Text = "Agregar Conexión";
+                    label3.Text = null;
                     break;
                 case "Diccionario":
-                    txtDato.Enabled = false;
+                    txtDato.Enabled = true;
                     btnInOrden.Enabled = false;
                     btnPostOrden.Enabled = false;
                     btnPreOrden.Enabled = false;
@@ -559,6 +586,8 @@ namespace Estructura_de_datos
                     txtDestino.Enabled = true;
                     btnConectarGrafos.Enabled = true;
                     btnConectarGrafos.Text = "Agregar al Diccionario";
+                    btnAgregar.Enabled = false;
+                    label3.Text = "Clave a buscar";
                     break;
                 case "Tabla Hash":
                     txtDato.Enabled = true; ;
@@ -572,6 +601,8 @@ namespace Estructura_de_datos
                     btnConectarGrafos.Enabled = true;
                     btnConectarGrafos.Text = "Agregar a la tabla Hash";
                     btnAgregar.Enabled = false;
+                    label3.Text = "Clave a buscar";
+
                     break;
             }
         }

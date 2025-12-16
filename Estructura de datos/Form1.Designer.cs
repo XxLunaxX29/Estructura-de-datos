@@ -35,6 +35,7 @@
             btnPreOrden = new Button();
             btnInOrden = new Button();
             btnPostOrden = new Button();
+            label3 = new Label();
             SuspendLayout();
             // 
             // cmbEstructura
@@ -165,9 +166,18 @@
             btnPostOrden.Text = "Post Orden";
             btnPostOrden.Click += btnPostOrden_Click;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(240, -3);
+            label3.Name = "label3";
+            label3.Size = new Size(0, 20);
+            label3.TabIndex = 15;
+            // 
             // Form1
             // 
             ClientSize = new Size(860, 400);
+            Controls.Add(label3);
             Controls.Add(btnPostOrden);
             Controls.Add(btnInOrden);
             Controls.Add(btnPreOrden);
@@ -197,5 +207,6 @@
         private Button btnPreOrden;
         private Button btnInOrden;
         private Button btnPostOrden;
+        private Label label3;
     }
 }
