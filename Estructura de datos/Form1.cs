@@ -95,26 +95,10 @@ namespace Estructura_de_datos
                 case "Cola Doble":
                     colaDoble.Enqueue(dato);
                     break;
-                case "Cola de Prioridad":
-
-                    break;
-
-
-
                 case "Árbol Binario":
                     EjecutarCapturandoConsola(() => arbol.Agregar(int.Parse(DATA)));
                     Log($"Agregado al Árbol: {DATA}");
                     break;
-
-
-
-                case "Diccionario":
-                    diccionario.Insertar(Clave, "Valor_" + Valor);
-                    break;
-                case "Tabla Hash":
-                    tablahash.Insertar(Clave, "Valor" + Valor);
-                    break;
-
                 case "Grafo":
                     if (string.IsNullOrWhiteSpace(txtDato.Text))
                     {
